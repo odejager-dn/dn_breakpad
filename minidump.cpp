@@ -15,8 +15,6 @@ extern "C" {
 extern char *program_invocation_name;
 extern char *program_invocation_short_name;
 
-// extern void set_dump_filename(char *filename);
-
 static bool dumpCallback(const google_breakpad::MinidumpDescriptor& descriptor,
 void* context, bool succeeded);
 
@@ -32,16 +30,16 @@ void* context, bool succeeded) {
 void crash() { volatile int* a = (int*)(NULL); *a = 1; }
 
 void minidump_register_mem(void *ptr, uint32_t sz_bytes) {
-  printf("Registering address: %p\n", ptr);
+  //printf("Registering address: %p\n", ptr);
   eh.RegisterAppMemory(ptr, sz_bytes);
 }
 
 void minidump_unregister_mem(void *ptr) {
-  printf("Unregistering address: %p\n", ptr);
+  //printf("Unregistering address: %p\n", ptr);
   eh.UnregisterAppMemory(ptr);
 }
 
-int create_minidump(const char *output_path, int signal) {
+int minidump_dump(const char *output_path, int signal) {
 
   // core-${core_executable}.${core_pid}.sig-${core_signum}-XXXXXXXXXXXXXXXX.dmp
   char file_path[256] = {0};

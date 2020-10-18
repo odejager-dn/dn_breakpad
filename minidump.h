@@ -8,7 +8,7 @@ extern "C" {
 #endif
 
 extern void minidump_register_mem(void *ptr, uint32_t sz_bytes);
-extern void minidump__unregister_mem(void *ptr);
+extern void minidump_unregister_mem(void *ptr);
 extern int minidump_dump(const char *output_path, int signal);
 
 #ifdef __cplusplus
